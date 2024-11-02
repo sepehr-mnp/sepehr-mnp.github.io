@@ -1,14 +1,42 @@
+/* Define color variables */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #222222;
+    --link-color: #007bff;
+    --header-bg-color: #222222;
+    --header-text-color: #ffffff;
+    --section-bg-color: #f4f4f4;
+    --code-bg-color: #f4f4f4;
+    --code-border-color: #ddd;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #121212;
+        --text-color: #e0e0e0;
+        --link-color: #9cdcfe;
+        --header-bg-color: #1e1e1e;
+        --header-text-color: #ffffff;
+        --section-bg-color: #1f1f1f;
+        --code-bg-color: #252526;
+        --code-border-color: #333333;
+    }
+}
+
+/* Apply the color variables */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 header {
     text-align: center;
     padding: 20px;
-    background-color: #222;
-    color: #fff;
+    background-color: var(--header-bg-color);
+    color: var(--header-text-color);
 }
 
 header h1 {
@@ -17,7 +45,7 @@ header h1 {
 }
 
 nav a {
-    color: #fff;
+    color: var(--header-text-color);
     margin: 0 10px;
     text-decoration: none;
 }
@@ -26,10 +54,12 @@ section {
     padding: 20px;
     max-width: 800px;
     margin: auto;
+    background-color: var(--section-bg-color);
+    border-radius: 8px;
 }
 
 h2 {
-    color: #333;
+    color: var(--text-color);
 }
 
 ul {
@@ -42,7 +72,7 @@ ul li {
 }
 
 a {
-    color: #007bff;
+    color: var(--link-color);
     text-decoration: none;
 }
 
@@ -51,8 +81,9 @@ a:hover {
 }
 
 pre {
-    background-color: #f4f4f4;
+    background-color: var(--code-bg-color);
     padding: 10px;
-    border-left: 3px solid #ddd;
+    border-left: 3px solid var(--code-border-color);
     overflow-x: auto;
+    border-radius: 5px;
 }
