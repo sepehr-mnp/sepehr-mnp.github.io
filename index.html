@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | Blockchain and Backend Developer</title>
+    <title>Seyed Sepehr Mirnasrollahi Parsa | Blockchain and Backend Developer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- Header -->
     <header>
-        <h1>Your Name</h1>
+        <h1>Seyed Sepehr Mirnasrollahi Parsa</h1>
         <p>Blockchain and Backend Developer specializing in Zero-Knowledge Proofs</p>
         <nav>
             <a href="#about">About</a>
             <a href="#experience">Experience</a>
+            <a href="#skills">Skills</a>
+            <a href="#education">Education</a>
             <a href="#projects">Projects</a>
             <a href="#contact">Contact</a>
         </nav>
@@ -24,7 +26,7 @@
     <section id="about">
         <h2>About Me</h2>
         <p>I am a Blockchain and Backend Developer with expertise in Solidity, Rust, Golang, and Java. My work spans smart contract development, zero-knowledge proofs, and backend systems. I'm passionate about using blockchain to improve digital transaction security, efficiency, and scalability.</p>
-        <p><a href="path/to/your-resume.pdf" target="_blank">Download Resume</a></p>
+        <p><a href="https://github.com/sepehr-mnp/resume/blob/main/SEPEHR_MIRNASROLLAHI.pdf" target="_blank">Download Resume</a></p>
     </section>
 
     <!-- Experience Section -->
@@ -36,18 +38,33 @@
                 <p>Full-Time | 04/2023 - 01/2024</p>
             </li>
             <li>
-                <h3>OVRXLAB - Blockchain Developer</h3>
+                <h3><a href = 'https://www.ovrxlab.com/'>OVRXLAB</a> - Blockchain Developer</h3>
                 <p>Full-Time | 01/2024 - 08/2024</p>
             </li>
             <li>
-                <h3>EAS - Blockchain Developer, Back-end Developer</h3>
+                <h3><a href = 'http://bestudios.io/'>EAS</a> - Blockchain Developer, Back-end Developer</h3>
                 <p>Part-Time | 02/2024 - 08/2024</p>
             </li>
             <li>
-                <h3>Nebka - Blockchain Developer</h3>
+                <h3><a href = 'https://rango.exchange/'>Nebka</a> - Blockchain Developer</h3>
                 <p>Full-Time | 08/2024 – Present</p>
             </li>
         </ul>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <p>Blockchain, Solidity, Golang, Web3.js, Rust, circom, Git, Mocha, Ganache, RabbitMQ, Goent, ZK-SNARKs, gRPC, Docker</p>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2>Education</h2>
+        <p><strong>Amirkabir University of Technology</strong> – Computer Engineering</p>
+        <p>09/2021 - Present</p>
+        <p>Current Grade: 18.30</p>
+        <p>University Entrance Exam Rank: 90th in Second Area</p>
     </section>
 
     <!-- Projects Section -->
@@ -77,7 +94,66 @@
             <li>
                 <h3>Matrix Multiplication Zero-Knowledge Proof (Prototype)</h3>
                 <p>A Circom script for matrix multiplication verification.</p>
-                <pre><code>template MatrixMultiplication(n) { /* Circom code here */ }</code></pre>
+                <pre><code>
+                    pragma circom 2.0.0;
+
+template DotProduct(n) {
+    signal input a[n];
+    signal input b[n];
+    signal output out;
+
+    signal terms[n];
+    signal partialSums[n+1];
+
+    // Initialize the first element of partialSums to zero
+    partialSums[0] <== 0;
+
+    for (var i = 0; i < n; i++) {
+        // Compute the product of corresponding elements
+        terms[i] <== a[i] * b[i];
+
+        // Accumulate the sum in partialSums
+        partialSums[i+1] <== partialSums[i] + terms[i];
+    }
+
+    // The final sum is the last element in partialSums
+    out <== partialSums[n];
+}
+
+template MatrixMultiplication(n) {
+    // 2D array inputs
+    signal input Input[n][n];
+    signal input Coefficient[n][n];
+
+    // Output matrix
+    signal output C[n][n];  
+    signal input answer[n][n];
+    signal input bios[n][n];
+    component dp[n][n];
+
+    for (var i = 0; i < n; i++) {
+        for (var j = 0; j < n; j++) {
+            dp[i][j] = DotProduct(n);
+
+            // Set the inputs of the dot product component
+            for (var k = 0; k < n; k++) {
+                dp[i][j].a[k] <== Input[i][k];
+                dp[i][j].b[k] <== Coefficient[k][j];
+            }
+
+            // Assign the output to C[i][j]
+            C[i][j] <== dp[i][j].out;
+        }
+    }
+    for (var row_i = 0; row_i < n; row_i++) {
+        for (var col_i = 0; col_i < n; col_i++) {
+            C[row_i][col_i] + bios[row_i][col_i] === answer[row_i][col_i];
+        }
+    }   
+}
+
+component main {public [Input, answer]} = MatrixMultiplication(2);
+</code></pre>
             </li>
         </ul>
     </section>
@@ -87,9 +163,9 @@
         <h2>Contact</h2>
         <p>Feel free to reach out via LinkedIn or view my work on GitHub:</p>
         <ul>
-            <li><a href="https://www.linkedin.com/in/your-profile" target="_blank">LinkedIn</a></li>
-            <li><a href="https://github.com/your-username" target="_blank">GitHub</a></li>
-            <li>Email: <a href="mailto:your-email@example.com">your-email@example.com</a></li>
+            <li><a href="https://www.linkedin.com/in/seyed-sepehr-mirnasrollahi-parsa-700827231/" target="_blank">LinkedIn</a></li>
+            <li><a href="https://github.com/sepehr-mnp" target="_blank">GitHub</a></li>
+            <li>Email: <a href="mailto:smirnasrollahi@gmail.com">smirnasrollahi@gmail.com</a></li>
         </ul>
     </section>
 
